@@ -1,0 +1,27 @@
+{
+    "name": "enicore-labs/ravenapi",
+    "description": "API framework.",
+    "autoload": {
+        "psr-4": {
+            "Enicore\\RavenApi\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.3",
+        "ext-pdo": "*",
+        "ext-openssl": "*",
+        "ext-zlib": "*",
+        "ext-fileinfo": "*",
+        "ext-gd": "*",
+        "ext-intl": "*",
+        "enshrined/svg-sanitize": "^0.15.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Enicore Solutions",
+            "homepage": "https://enicore.com"
+        }
+    ]
+}
