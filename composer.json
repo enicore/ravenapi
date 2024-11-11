@@ -1,5 +1,5 @@
 {
-    "name": "enicore-labs/ravenapi",
+    "name": "enicore/ravenapi",
     "description": "API framework.",
     "autoload": {
         "psr-4": {

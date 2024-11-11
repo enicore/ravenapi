@@ -24,7 +24,7 @@ ideal for API development.
 
 ## Installation
 ```
-composer require enicore-labs/ravenapi
+composer require enicore/ravenapi
 ```
 To copy from a local directory, add the following configuration in your composer.json:
 ```
@@ -39,7 +39,7 @@ To copy from a local directory, add the following configuration in your composer
         }
     ],
     "require": {
-        "enicore-labs/ravenapi": "*"
+        "enicore/ravenapi": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
