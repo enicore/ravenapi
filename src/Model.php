@@ -19,7 +19,7 @@ namespace Enicore\RavenApi;
  */
 class Model
 {
-    use InjectionManual;
+    use Injection;
 
     protected string $table = ""; // can be overloaded in the derived classes
     protected array $publicFields = [];
@@ -34,7 +34,7 @@ class Model
      */
     public function __construct(int|string $id = 0)
     {
-        $this->setDependencies();
+        $this->injectDependencies();
 
         // set the table name to plural of the model name
         if (empty($this->table)) {

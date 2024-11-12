@@ -8,17 +8,25 @@ namespace Enicore\RavenApi;
 /**
  * The Injection trait provides automatic access to singleton instances of key classes within the Raven API framework.
  * It maps class names to service aliases and ensures that each service is accessed via a single instance.
+ *
+ * @property-read Auth $auth
+ * @property-read Code $code
+ * @property-read Database $db
+ * @property-read Request $request
+ * @property-read Response $response
+ * @property-read Router $router
+ * @property-read Session $session
  */
 trait Injection
 {
-    private array $classes = [
-        "auth" => "Enicore\\RavenApi\\Auth",         // Auth service
-        "code" => "Enicore\\RavenApi\\Code",         // Code handling service
-        "db" => "Enicore\\RavenApi\\Database",       // Database service
-        "request" => "Enicore\\RavenApi\\Request",   // Request handling service
-        "response" => "Enicore\\RavenApi\\Response", // Response handling service
-        "router" => "Enicore\\RavenApi\\Router",     // Router service
-        "session" => "Enicore\\RavenApi\\Session",   // Session management service
+    private array $injectionClasses = [
+        "auth" => "Enicore\\RavenApi\\Auth",
+        "code" => "Enicore\\RavenApi\\Code",
+        "db" => "Enicore\\RavenApi\\Database",
+        "request" => "Enicore\\RavenApi\\Request",
+        "response" => "Enicore\\RavenApi\\Response",
+        "router" => "Enicore\\RavenApi\\Router",
+        "session" => "Enicore\\RavenApi\\Session",
     ];
 
     /**
@@ -31,10 +39,18 @@ trait Injection
      */
     public function __get(string $name): ?object
     {
-        if (array_key_exists($name, $this->classes)) {
-            return $this->classes[$name]::instance();
-        }
+        return array_key_exists($name, $this->injectionClasses) ? $this->injectionClasses[$name]::instance() : null;
+    }
 
-        return null;
+    /**
+     * Sets the dependencies by assigning the corresponding singleton instances to the class properties. This function
+     * is called to initialize the class properties with their respective singleton instances, allowing the class to
+     * access various services (e.g., authentication, database, etc.).
+     */
+    public function injectDependencies(): void
+    {
+        foreach ($this->injectionClasses as $key => $class) {
+            $this->$key = $class::instance();
+        }
     }
 }

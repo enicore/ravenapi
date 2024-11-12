@@ -23,7 +23,7 @@ class Response
      */
     public function success(array $data = []): void
     {
-        ob_get_level() && @ob_end_clean(); // Clear output buffer if needed
+        ob_get_level() && @ob_end_clean();
         header('Content-Type: application/json');
         exit(json_encode(["success" => true, "data" => $data]));
     }
@@ -37,7 +37,7 @@ class Response
      */
     public function error(string $message = "", array $data = []): void
     {
-        ob_get_level() && @ob_end_clean(); // Clear output buffer if needed
+        ob_get_level() && @ob_end_clean();
         header('Content-Type: application/json');
         exit(json_encode(["success" => false, "message" => $message, "data" => $data]));
     }
@@ -51,7 +51,12 @@ class Response
      */
     public function terminate(int $code = 404, string $message = ""): void
     {
-        ob_get_level() && @ob_end_clean(); // Clear output buffer if needed
+        ob_get_level() && @ob_end_clean();
+
+        // don't cache this response
+        header('Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate');
+        header('Pragma: no-cache');
+        header('Expires: 0');
 
         if ($message) {
             header("HTTP/1.1 $code " . $message);
