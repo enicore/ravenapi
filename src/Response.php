@@ -58,12 +58,8 @@ class Response
         header('Pragma: no-cache');
         header('Expires: 0');
 
-        if ($message) {
-            header("HTTP/1.1 $code " . $message);
-        } else {
-            http_response_code($code);
-        }
-
-        exit();
+        header("HTTP/1.1 $code $message");
+        header("Content-Type: application/json");
+        exit(json_encode(['error' => $message]));
     }
 }

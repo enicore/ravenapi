@@ -44,6 +44,7 @@ class Router
         $controller = "Controllers\\" . ucfirst($controller) . "Controller";
         $method = str_replace("-", "", $method) . "Action";
 
+        // check if controller and method exist and get the function attributes
         if (($attributes = $this->getMethodAttributes($controller, $method)) === false) {
             $this->response->terminate(405, "No route [229338]");
         }
