@@ -17,6 +17,9 @@
         "ext-intl": "*",
         "enshrined/svg-sanitize": "^0.15.4"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
     "license": "MIT",
     "authors": [
         {
@@ -25,3 +28,4 @@
         }
     ]
 }
+
